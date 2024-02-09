@@ -7,21 +7,34 @@ class Cy < Formula
   homepage "https://github.com/cfoust/cy"
   version "0.1.11"
   license "MIT"
-  depends_on :macos
 
-  if Hardware::CPU.arm?
-    url "https://github.com/cfoust/cy/releases/download/v0.1.11/cy_0.1.11_darwin_arm64.tar.gz"
-    sha256 "d487eb9d5af0fe2b4b3bb6ae837e316190fb503d65ad47d2490ff7fe372f1944"
+  on_macos do
+    if Hardware::CPU.arm?
+      url "https://github.com/cfoust/cy/releases/download/v0.1.11/cy_0.1.11_darwin_arm64.tar.gz"
+      sha256 "d487eb9d5af0fe2b4b3bb6ae837e316190fb503d65ad47d2490ff7fe372f1944"
 
-    def install
-      bin.install "cy"
+      def install
+        bin.install "cy"
+      end
+    end
+    if Hardware::CPU.intel?
+      url "https://github.com/cfoust/cy/releases/download/v0.1.11/cy_0.1.11_darwin_amd64.tar.gz"
+      sha256 "231e791f25d7df8ae650133cce999f3d142a767063067e509703853246856d34"
+
+      def install
+        bin.install "cy"
+      end
     end
   end
-  if Hardware::CPU.intel?
-    url "https://github.com/cfoust/cy/releases/download/v0.1.11/cy_0.1.11_darwin_amd64.tar.gz"
-    sha256 "231e791f25d7df8ae650133cce999f3d142a767063067e509703853246856d34"
 
-    def install
-      bin.install "cy"
+  on_linux do
+    if Hardware::CPU.intel?
+      url "https://github.com/cfoust/cy/releases/download/v0.1.11/cy_0.1.11_linux_amd64.tar.gz"
+      sha256 "3b5f7c40833c0c72eb2086dac15c87ea53fcca6865477d66c593107fc05cbc34"
+
+      def install
+        bin.install "cy"
+      end
     end
   end
+end
