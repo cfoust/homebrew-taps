@@ -7,7 +7,6 @@ class Cy < Formula
   homepage "https://github.com/cfoust/cy"
   version "0.1.13"
   license "MIT"
-  depends_on :macos
 
   on_macos do
     if Hardware::CPU.arm?
